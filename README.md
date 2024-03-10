@@ -19,7 +19,19 @@ Note: the sensor sections from this guide are a TLDR versions from [Last Minute 
 
 ------
 
-[TOC]
+- [Connecting to Arduino](#connecting-to-arduino)
+   * [*Other Common Issues/Troubleshooting:*](#other-common-issuestroubleshooting)
+   * [General Info and Tips about using Arduino in PHYS2020 Project](#general-info-and-tips-about-using-arduino-in-phys2020-project)
+- [MAX6675 (or MAX31855) Temperature Sensor](#max6675-or-max31855-temperature-sensor)
+   * [Tips & Tricks](#tips--tricks)
+- [DS18B20 Temperature Sensor](#ds18b20-temperature-sensor)
+   * [DS18B20 usage notes](#ds18b20-usage-notes)
+- [MPU6050 Accelerometer and Gyroscope](#mpu6050-accelerometer-and-gyroscope)
+- [Pressure Sensor](#pressure-sensor)
+- [Recording Data to SD Card](#recording-data-to-sd-card)
+   * [Verify your SD card and reader module works](#verify-your-sd-card-and-reader-module-works)
+   * [Using the sample code](#using-the-sample-code)
+      + [Other things to consider](#other-things-to-consider)
 
 ------
 
