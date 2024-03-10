@@ -2,6 +2,8 @@
 #include <SPI.h>
 #include <SD.h>
 File myFile;  // setup a file reader/writer instance
+// String fileName;
+
 
 // MAX6675
 #include "max6675.h"
@@ -33,19 +35,46 @@ void setup()
 
   Serial.println();
   Serial.println();
-  Serial.print("Initializing SD card...");
+  Serial.print("Initialising SD card...");
 
   if (!SD.begin(10)) { // SD Card module connected to pin 10 
-    Serial.println("initialization failed!");
+    Serial.println("failed!");
     return;
   }
-  Serial.println("initialization done.");
+  Serial.println("done.");
 
 
   // Create a new log file for this session
-  String fileName = createNewLogFile();
+  // String fileName = nameNewLogFile();
+  // Starting file index
+  int index = 0;
+  String fileName = "";
+
+  do {
+    // Generate new file name
+    fileName = "log" + String(index) + ".csv";
+    index++;
+  } while (SD.exists(fileName)); // Check if file exists, if so, increment and try again
   Serial.print("Logging to: ");
   Serial.println(fileName);
+  // Create new file and immediately close it
+  myFile = SD.open(fileName, FILE_WRITE);
+  if (myFile) {
+    // myFile.close();
+  } else {
+    Serial.println("Could not create log file.");
+  }
+  
+  // Open log file for this session
+  // delay(100);
+  // myFile = SD.open(fileName, FILE_WRITE);
+  // if (!myFile) {
+  //   Serial.println("Error opening log file for writing.");
+  // } else {
+    // myFile.close();
+  // }
+  
+
 
   // // open the file. note that only one file can be open at a time,
   // // so you have to close this one before opening another.
@@ -83,12 +112,12 @@ void setup()
 
   // Try to initialize! MPU6050
   if (!mpu.begin()) {
-    Serial.println("Failed to find MPU6050 chip");
+    Serial.println("MPU6050 chip initialisation failed!");
     while (1) {
       delay(10);
     }
   }
-  Serial.println("MPU6050 Found!");
+  Serial.println("MPU6050 Initialised.");
   // You might want to tweak the following settings
   mpu.setAccelerometerRange(MPU6050_RANGE_8_G); 
   mpu.setGyroRange(MPU6050_RANGE_500_DEG);
@@ -98,7 +127,10 @@ void setup()
 
 void loop()
 {
-  // nothing happens after setup
+  // myFile = SD.open(fileName, FILE_WRITE);
+  // if (!myFile) {
+  //   Serial.println("Error opening log file for writing.");
+  // }
 
 
   // MPU6050 
@@ -106,84 +138,93 @@ void loop()
   sensors_event_t a, g, temp;
   mpu.getEvent(&a, &g, &temp);
 
-  /* Print out the values */
-  Serial.print("Acceleration X: ");
-  Serial.print(a.acceleration.x);
-  Serial.print(", Y: ");
-  Serial.print(a.acceleration.y);
-  Serial.print(", Z: ");
-  Serial.print(a.acceleration.z);
-  Serial.println(" m/s^2");
+  // /* Print out the values */
+  // Serial.print("Acceleration X: ");
+  // Serial.print(a.acceleration.x);
+  // Serial.print(", Y: ");
+  // Serial.print(a.acceleration.y);
+  // Serial.print(", Z: ");
+  // Serial.print(a.acceleration.z);
+  // Serial.println(" m/s^2");
 
-  Serial.print("Rotation X: ");
-  Serial.print(g.gyro.x);
-  Serial.print(", Y: ");
-  Serial.print(g.gyro.y);
-  Serial.print(", Z: ");
-  Serial.print(g.gyro.z);
-  Serial.println(" rad/s");
+  // Serial.print("Rotation X: ");
+  // Serial.print(g.gyro.x);
+  // Serial.print(", Y: ");
+  // Serial.print(g.gyro.y);
+  // Serial.print(", Z: ");
+  // Serial.print(g.gyro.z);
+  // Serial.println(" rad/s");
 
-  Serial.print("Temperature: ");
-  Serial.print(temp.temperature);
-  Serial.println(" degC");
+  // Serial.print("Temperature: ");
+  // Serial.print(temp.temperature);
+  // Serial.println(" degC");
 
-  Serial.println("");
+  // Serial.println("");
+
+  logToSerialAndSD("Tms");
+  logToSerialAndSD(millis());
+
+  logToSerialAndSD("Acc");
+  logToSerialAndSD(a.acceleration.x);
+  logToSerialAndSD(a.acceleration.y);
+  logToSerialAndSD(a.acceleration.z);
+  logToSerialAndSD("Rot");
+  logToSerialAndSD(g.gyro.x);
+  logToSerialAndSD(g.gyro.y);
+  logToSerialAndSD(g.gyro.z);
 
 
+  // Serial.println(millis());
 
-  Serial.println(millis());
+  // Serial.print("V=");
+  // Serial.println(analogRead(A1) * 5 / 1023.0); 
 
-  Serial.print("V=");
-  Serial.println(analogRead(A1) * 5 / 1023.0); 
+  logToSerialAndSD("A1");
+  logToSerialAndSD(analogRead(A1));
 
-  Serial.print("C1 = "); 
-  Serial.println(thermocouple.readCelsius());
+  logToSerialAndSD("TC");  
+  logToSerialAndSD(thermocouple.readCelsius());
+
+  // Serial.print("C1 = "); 
+  // Serial.println(thermocouple.readCelsius());
+
 
   tempSensor.requestTemperatures();             // send the command to get temperatures
   // float tempCelsius = tempSensor.getTempCByIndex(0);  // read temperature in Celsius
-  Serial.print("C2 = "); 
-  Serial.println(tempSensor.getTempCByIndex(0));
+  // Serial.print("C2 = "); 
+  // Serial.println(tempSensor.getTempCByIndex(0));
+  logToSerialAndSD("TS");
+  logToSerialAndSD(tempSensor.getTempCByIndex(0));
 
-  delay(1000);
+
+  logToSerialAndSD('\n');
+
+  // myFile.close();
+  myFile.flush();
+  delay(1); // delay 1ms 
+  // basically logging as fast as possible (about 8Hz), 
+  // make delay longer if you want to less logs. 
 
 }
 
-
-void logToSerialAndSD(String msg) {
-  Serial.println(msg);
-  myFile = SD.open("testlog.csv", FILE_WRITE);
+template <typename T> // Allow logToSerialAndSD to accept any type
+void logToSerialAndSD(T msg) {
+  Serial.print(msg);
+  // myFile = SD.open("testlog.csv", FILE_WRITE);
+  if (msg != '\n') {
+    Serial.print(',');
+  }
   if (myFile) {
     myFile.print(msg);
-    myFile.close();
+    if (msg != '\n') {
+      myFile.print(',');
+    }
+    // myFile.close();
   } else {
-    Serial.println("Error opening file");
+    Serial.println("Error logging to SD Card");
   }
-
 }
 
-
-
-String createNewLogFile() {
-  // Starting file index
-  int index = 0;
-  String fileName = "";
-
-  do {
-    // Generate new file name
-    fileName = "log" + String(index) + ".txt";
-    index++;
-  } while (SD.exists(fileName)); // Check if file exists, if so, increment and try again
-
-  // Create new file and immediately close it
-  myFile = SD.open(fileName, FILE_WRITE);
-  if (myFile) {
-    myFile.close();
-  } else {
-    Serial.println("Could not create log file.");
-  }
-
-  return fileName; // Return the new file name
-}
 
 
 
