@@ -211,12 +211,15 @@ Depending on your sensor type, usually they only need ground and 5V, then the se
 
 * Thus, if for example your pressure sensor range is 0-5PSI, then 0-5Psi will correspond to 0-5V output, and your precision is 0.001 PSI. 
 * You would need to test yoru pressure sensor carefully and make sure they are up to spec. 
+* For the template data logger (`SDCardDataLogger.ino`) pressure sensor is connected to analog pin A1. 
 
 ## Recording Data to SD Card
 
 For more detailed guide on using the SD card module, please read https://lastminuteengineers.com/arduino-micro-sd-card-module-tutorial/
 
 
+
+For the SD card module to work with the sample code (`SDCardDataLogger.ino`), connect the pins as follows, 
 
 ![SD Card Module pinout](https://lastminuteengineers.com/wp-content/uploads/arduino/Micro-SD-TF-Card-Module-Pinout-SPI.png)
 
@@ -233,17 +236,17 @@ For more detailed guide on using the SD card module, please read https://lastmin
 
 ![IMG_2253](screenshots/IMG_2253.JPG)
 
-Open the built in sample code at `Menu -> File -> Examples -> SD -> CardInfo` , and change the value of `chipSelect`  at `line 36` to `10`, then upload the code onto Arduino, you should get the following info from the provided SD card (your's might not show any files found, I have some files from macOS filesystem crap). 
+### Verify your SD card and reader module works
+
+Open the built in sample code at `Menu -> File -> Examples -> SD -> CardInfo` , and change the value of `chipSelect`  at `line 36` to `10`, then upload the code onto Arduino, you should get the following info from the provided SD card (your's probably will not show any files, I have some files from macOS filesystem crap). 
 
 ![SD Card module v2](screenshots/SD Card module v2.png)
 
+### Using the sample code
 
+Unless you installed all mentioned sensors in the exact pins, the sample code `SDCardDataLogger.ino` would most like throw some errors and complaint about missing sensors. 
 
-
-
-
-
-
+If you do have all sensors installed, then `SDCardDataLogger.ino` would log data to both SD card and Serial Monitor, and it could also log data to SD card without connecting it to a computer. The Serial monitor output would look something like this: 
 
 ```csv
 MPU6050 Initialised.
@@ -256,15 +259,80 @@ Tms,690,Acc,-3.11,3.47,-8.85,Rot,-0.08,-0.02,0.02,V1,0.00,TC,0.00,TS,25.00,
 ...
 ```
 
+The first three lines is just checking setup, from 4th lines onwards are the exact data logged to SD card. 
+
+You should comment out (`Cmd-/`)  code about any specific sensors that you are not using. 
+
+* Codes about MAX6675: 
+
+  ```c++
+  // Line 13-14
+  // MAX6675 Thermocouple
+  #include "max6675.h"
+  MAX6675 thermocouple(6, 5, 4); // SCK - pin 6, CS - pin 5, SO - pin 4.
+  ...
+  // Line 100-101
+  // MAX6675
+  logToSerialAndSD("TC");  
+  logToSerialAndSD(thermocouple.readCelsius()); 
+  ```
+
+* Codes about DS18B20
+
+    ```c++
+    // Line 18-21
+    // DS18B20 Temperature Sensor 
+    #include <OneWire.h>
+    #include <DallasTemperature.h>
+    OneWire oneWire(2);         // setup a oneWire with DS18B20 DQ connected to pin 2 
+    DallasTemperature tempSensor(&oneWire); // pass oneWire to DallasTemperature library
+    ...
+    // Line 104-106
+    // DS18B20
+    tempSensor.requestTemperatures(); // send the command to get temperatures 
+    logToSerialAndSD("TS");
+    logToSerialAndSD(tempSensor.getTempCByIndex(0));
+    ```
+
+* Codes about MPU6050
+
+    ```c++
+    // Line 25
+    // MPU6050 Accelerometer and Gyroscope
+    #include <Adafruit_MPU6050.h>
+    #include <Adafruit_Sensor.h>
+    #include <Wire.h>
+    Adafruit_MPU6050 mpu;
+    ...
+    // Lines 83-92
+    // MPU6050 
+    sensors_event_t a, g, temp; // Get new sensor events with the readings
+    mpu.getEvent(&a, &g, &temp);
+    logToSerialAndSD("Acc");
+    logToSerialAndSD(a.acceleration.x);
+    logToSerialAndSD(a.acceleration.y);
+    logToSerialAndSD(a.acceleration.z);
+    logToSerialAndSD("Rot");
+    logToSerialAndSD(g.gyro.x);
+    logToSerialAndSD(g.gyro.y);
+    logToSerialAndSD(g.gyro.z);
+    ```
+
+* Codes about pressure sensor
+
+    ```c++
+    // Lines 96-97
+    // Pressure Sensor at Analog pin A1 
+    logToSerialAndSD("V1");
+    logToSerialAndSD(analogRead(A1)*5.0/1024.0);
+    ```
 
 
 
+#### Other things to consider
 
-
-
-
-
-
+* `SDCardDataLogger.ino` will let arduino dump data onto SD immediately after initialisation, and the only way to stop is powering down the arduino. Consider adding a push button to start and stop recording.
+* Arduino Nano has a built in reset button, if you press it once, Arduino will restart, and run `SDCardDataLogger.ino` which would creat a new file and start logging again. 
 
 
 

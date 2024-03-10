@@ -1,3 +1,8 @@
+/*
+  Template SD Card data logger for ANU PHYS2020 Project
+  Tony.Yan @anu.edu.au
+  March 2024
+*/
 // SD Card Module 
 #include <SPI.h>
 #include <SD.h>
