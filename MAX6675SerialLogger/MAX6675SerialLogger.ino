@@ -3,9 +3,9 @@
 
 #include "max6675.h"
 
-int thermoDO = 4;
-int thermoCS = 5;
-int thermoCLK = 6;
+int thermoDO = 4;  //SO pin
+int thermoCS = 5;  // CS pin
+int thermoCLK = 6; // SCK pin
 
 MAX6675 thermocouple(thermoCLK, thermoCS, thermoDO);
 
