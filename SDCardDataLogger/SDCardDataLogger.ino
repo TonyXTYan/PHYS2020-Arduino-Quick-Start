@@ -4,7 +4,6 @@
 File myFile;  // declear a file object for reading/writing
 
 
-
 // MAX6675 Thermocouple
 #include "max6675.h"
 MAX6675 thermocouple(6, 5, 4); // SCK - pin 6, CS - pin 5, SO - pin 4.
@@ -102,10 +101,10 @@ void loop()
   logToSerialAndSD(tempSensor.getTempCByIndex(0));
 
 
-  logToSerialAndSD('\n'); // print new line 
+  // finishing loop
+  logToSerialAndSD('\n'); // linebreak 
   myFile.flush(); // so that you can hot unplug SD card without losing data.
   delay(1); // delay 1ms, basically logging as fast as possible (about 8Hz), make delay longer if you want to less logs. 
-
 }
 
 

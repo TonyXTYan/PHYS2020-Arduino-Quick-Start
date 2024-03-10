@@ -84,7 +84,7 @@ You might find the following Arduino Pin layout helpful (available at https://co
 * In general disconnect ant unused components from the Arduino pin, some Arduino libraries will hardcode specific pins and send current through without warning. 
 * Becareful about which voltage rail you are connecting the modules! Some module come with a built-in voltage regulator so you can connect them to either 3.3V or 5V, while some modules doesn't and have to be connected to 3.3V, otherwise they could be permanentally damaged. 
 * You probably should test each of your sensors and make sure they are up to the manufacture's claims before quoting their measurements in a scientific way, e.g. know their precision, measurement range, systematic error, response time. 
-* ChatGPT is a fantastic place to get some starter code, so you can mostly forget about C++ syntax sugar and focus on getting things working. 
+* ChatGPT is a fantastic place to get some starter code and random Arduino questions.
 * [Arduino Official Documentation](https://docs.arduino.cc) and [Arduino Offical Forum](https://forum.arduino.cc) are usually good first places to look up for any issues.
 * https://lastminuteengineers.com/electronics/arduino-projects/ provide extensive and detailed guide on Arduino modules, I strongly recommand a quick read to be familar of what's on there, espically if you want to go beyond the sample codes. (I've also stolen some figures from their website for educational purposes).
 
@@ -239,9 +239,30 @@ Open the built in sample code at `Menu -> File -> Examples -> SD -> CardInfo` , 
 
 
 
+
+
+
+
+
+
 ```csv
-Tms,386,Acc,5.84,2.68,-5.46,Rot,-1.52,-0.18,1.87,A1,1,TC,0.00,TS,28.00,
+MPU6050 Initialised.
+Initialising SD card...done.
+Logging to: log20.csv
+Tms,423,Acc,-3.10,3.44,-8.87,Rot,-0.08,-0.01,0.02,V1,0.01,TC,0.00,TS,25.00,
+Tms,557,Acc,-3.09,3.45,-8.88,Rot,-0.08,-0.02,0.02,V1,0.01,TC,0.00,TS,25.00,
+Tms,690,Acc,-3.11,3.47,-8.85,Rot,-0.08,-0.02,0.02,V1,0.00,TC,0.00,TS,25.00,
+...
+...
 ```
+
+
+
+
+
+
+
+
 
 
 
