@@ -39,29 +39,29 @@ The Arduino IDE will preload a default BareMinimum screip (`Menu -> File -> Exam
 
 We first need to configure the IDE to our specific Arduino by clicking `Select Board`
 
-![arduino setup - select board](screenshots/arduino setup - select board.png)
+![arduino setup - select board](screenshots/arduino_setup-select_board.png)
 
 and select `Arduino Nano` and its `USB Serial Port`. 
 
-![arduino setup - select board 2](screenshots/arduino setup - select board 2.png)
+![arduino setup - select board 2](screenshots/arduino_setup-select_board_2.png)
 
 Then you can try to upload the BareMinimum script onto your Arduino by pressing the `Upload` icon (or `Menu -> Sketch -> Upload` or `Cmd-U`). 
 
-![arduino setup - upload button](screenshots/arduino setup - upload button.png)
+![arduino setup - upload button](screenshots/arduino_setup-upload_button.png)
 
 
 
 You might experience the following error saying the programmer is not in sync
 
-![arduino setup - not in sync](screenshots/arduino setup - not in sync.png)
+![arduino setup - not in sync](screenshots/arduino_setup-not_in_sync.png)
 
 In that case, you need to go to Menu -> Tools -> Processor and select: **ATmega328P (Old Bootloader)**
 
-![arduino setup - old bootloader](screenshots/arduino setup - old bootloader.png)
+![arduino setup - old bootloader](screenshots/arduino_setup-old_bootloader.png)
 
 Then try upload again and it should upload without error.
 
-![arduino setup - success](screenshots/arduino setup - success.png)
+![arduino setup - success](screenshots/arduino_setup-success.png)
 
 ### *Other Common Issues/Troubleshooting:*
 
@@ -117,20 +117,20 @@ The following table are the connections used in the sample code:
 | CS (Chip Select pin)                                   | D5         |
 | SO (Serial data Out)                                   | D4         |
 
-![breadboard MAX6678](screenshots/breadboard MAX6678.JPG)
+![breadboard MAX6678](screenshots/breadboard_MAX6678.JPG)
 
 You also need to grab a code library to use MAX6675 module, go to `Menu -> Sketch -> Include Library -> Manage Libraries ` (or `Shift-Cmd-I` or click on the Library icon in left side bar), and search up `MAX6675`.
 I used the official library from Adafruit, but you're of course welcome to experiment with other ones. 
 
-![arduino library MAX6675](screenshots/MAX6675 - library.png)
+![arduino library MAX6675](screenshots/MAX6675-library.png)
 
 Once the library is installed, open the provided sample code at `Menu -> File -> Examples -> MAX6675 library -> serialthermocouple` , there's also a copy of it named `MAX6675SerialLogger.ino` in this repository.
 
-![MAX6675 - sample](screenshots/MAX6675 - sample.png)
+![MAX6675 - sample](screenshots/MAX6675-sample.png)
 
 Try upload their sample script and open serial monitor (`Menu -> Tools -> Serial Monitor` or `Shift-Cmd-M` or the top right Magnifing glass icon) you should see the thermocouple printing the temperatures onto the Serial Monitor. You could also show their timestamps by toggling the clock icon on the right. 
 
-![MAX6675 - sample logging](screenshots/MAX6675 - sample logging.png)
+![MAX6675 - sample logging](screenshots/MAX6675-sample_logging.png)
 
 ### Tips & Tricks
 
@@ -150,16 +150,16 @@ We provide the DS18B20 sensor that comes in the waterproof probe. You also need 
 | GND             | GND        |
 | DQ (Data Queue) | D2         |
 
-![breadboard DS18B20](screenshots/breadboard DS18B20.JPG)
+![breadboard DS18B20](screenshots/breadboard_DS18B20.JPG)
 
 You also need to grab a code library to use DS18B20 module, go to `Menu -> Sketch -> Include Library -> Manage Libraries ` (or `Shift-Cmd-I` or click on the Library icon in left side bar), and search up `DS18B20`.
 I used the official library from `DallasTemperature`, but you're of course welcome to experiment with other ones. 
 
-![DS18B20 - library](screenshots/DS18B20 - library.png)
+![DS18B20 - library](screenshots/DS18B20-library.png)
 
 Once the library is installed, open the provided sample code at `Menu -> File -> Examples -> DallasTemperatures -> Single` , there's also a copy of it named `DS18B20Simple.ino` in this repository.
 
-![DS18B20 - sample logging](screenshots/DS18B20 - sample logging.png)
+![DS18B20 - sample logging](screenshots/DS18B20-sample_logging.png)
 
 Try upload their sample script and open serial monitor (`Menu -> Tools -> Serial Monitor` or `Shift-Cmd-M` or the top right Magnifing glass icon) you should see the thermister printing the temperatures onto the Serial Monitor. You could also show their timestamps by toggling the clock icon on the right. 
 
@@ -240,7 +240,7 @@ For the SD card module to work with the sample code (`SDCardDataLogger.ino`), co
 
 Open the built in sample code at `Menu -> File -> Examples -> SD -> CardInfo` , and change the value of `chipSelect`  at `line 36` to `10`, then upload the code onto Arduino, you should get the following info from the provided SD card (your's probably will not show any files, I have some files from macOS filesystem crap). 
 
-![SD Card module v2](screenshots/SD Card module v2.png)
+![SD Card module v2](screenshots/SD_Card_module_v2.png)
 
 ### Using the sample code
 
