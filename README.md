@@ -150,7 +150,7 @@ Try uploading their sample script and opening the serial monitor (`Menu -> Tools
 
 ## DS18B20 Temperature Sensor
 
-For a more detailed guide on using the MAX6675 module, please read https://lastminuteengineers.com/ds18b20-arduino-tutorial/ .
+For a more detailed guide on using the DS18B20 module, please read https://lastminuteengineers.com/ds18b20-arduino-tutorial/ .
 
 We provide the DS18B20 sensor that comes in the waterproof probe. You also need a 4.7kΩ resistor between VCC and DQ. 
 
@@ -201,7 +201,7 @@ You might need soldering skills to make the pins.
 
 ![IMG_2252](screenshots/IMG_2252.JPG)
 
-You also need to grab a code library to use the DS18B20 module, go to `Menu -> Sketch -> Include Library -> Manage Libraries ` (or `Shift-Cmd-I` or click on the Library icon in the left sidebar), and search up `MPU6050`.![breadboard - MPU6050](screenshots/breadboard - MPU6050.JPG)
+You also need to grab a code library to use the MPU6050 module, go to `Menu -> Sketch -> Include Library -> Manage Libraries ` (or `Shift-Cmd-I` or click on the Library icon in the left sidebar), and search up `MPU6050`.![breadboard - MPU6050](screenshots/breadboard - MPU6050.JPG)
 
 I used the official library of `Adafruit`, but you're of course welcome to experiment with other ones. 
 
