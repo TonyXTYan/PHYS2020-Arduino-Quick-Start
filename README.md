@@ -205,17 +205,21 @@ You also need to grab a code library to use the MPU6050 module, go to `Menu -> S
 
 I used the official library of `Adafruit`, but you're of course welcome to experiment with other ones. 
 
-![MPU6050 - library](screenshots/MPU6050 - library.png)
+![MPU6050 - library](screenshots/MPU6050-library.png)
 
 Once the library is installed, open the provided sample code at `Menu -> File -> Examples -> Adafruit MPU6050 -> basic readings`; there's also a copy of it named `MPU6050Basic.ino` in this repository.
 
-![MPU6050 - sample](screenshots/MPU6050 - sample.png)
+![MPU6050 - sample](screenshots/MPU6050-sample.png)
 
 Try uploading their sample script and opening the serial monitor (`Menu -> Tools -> Serial Monitor` or `Shift-Cmd-M` or the top right Magnifying glass icon). The sample codes use 115200 serial baud rate (instead of the default 9600), so you need to manually select the baud rate in the serial monitor. Then, you should see it printing the sensors' values onto the Serial Monitor. You could also show their timestamps by toggling the clock icon on the right. 
 
 You could also try the script in `Menu -> File -> Examples -> Adafruit MPU6050 -> plotter` and use the Serial Plotter (top right oscilloscope icon) to get a realtime plot from the accelerometer and gyroscope.
 
-![MPU6050 - plotter](screenshots/MPU6050 - plotter.png)
+![MPU6050 - plotter](screenshots/MPU6050-plotter.png)
+
+### Notes
+
+* MPU6050 has programming sensor range and higher range means lower sensitivity, this is set by `mpu.setAccelerometerRange(MPU6050_RANGE_8_G)` and `mpu.setGyroRange(MPU6050_RANGE_500_DEG)`. For example, if you choose maximum acceleration of $2g$, then you maximum sensitivity is $\frac{1}{16384}g \approx 0.6 \mathrm{mm/s^2}$, while max acc set to $16g$ would have sensitivity of $\frac{1}{2048}g\approx 4.8\mathrm{mm/s^2}$. More details about this is available on their datasheet https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf
 
 ## Pressure Sensor
 
@@ -256,7 +260,9 @@ Open the built-in sample code at `Menu -> File -> Examples -> SD -> CardInfo` , 
 
 ### Using the sample code
 
-Unless you installed all the sensors mentioned in the exact pins, the sample code `SDCardDataLogger.ino` would most likely throw some errors and complain about missing sensors. 
+Unless you installed all the sensors mentioned in the exact pins (in pic below), the sample code `SDCardDataLogger.ino` would most likely throw some errors and complain about missing sensors. 
+
+![IMG_2254](./screenshots/IMG_2254.jpeg)
 
 If you do have all sensors installed, then `SDCardDataLogger.ino` would log data to both the SD card and Serial Monitor, and it could also log data to the SD card without connecting it to a computer. The Serial monitor output would look something like this: 
 
