@@ -1,3 +1,11 @@
+---
+layout: single
+title: "Arduino Guide"
+toc: true
+toc_label: "Contents"
+toc_icon: "clipboard"
+---
+
 # ANU PHYS2020 Thermodynamics Course Arduino Quick Start Guide
 
 Tony.Yan @anu.edu.au
