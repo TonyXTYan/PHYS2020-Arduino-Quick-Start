@@ -17,10 +17,10 @@ just_the_docs:
 # Single page setup
 single_page: true
 
-# aux_links:
-#   "GitHub Repo":
-#     - "https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start"
+aux_links:
+  "GitHub Repo":
+    - "https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start"
 
-# nav_enabled: true
+nav_enabled: true
 
-# heading_anchors: true
+heading_anchors: true
