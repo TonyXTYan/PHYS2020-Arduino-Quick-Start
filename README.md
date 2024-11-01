@@ -15,10 +15,10 @@ March 2024
 ------
 
 *This is a guide for setting up an Arduino for data logging.*
-*Source code and this document are available at https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start*.
+*Source codes related to this document is available at https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start, this document is also available at https://tonyxtyan.github.io/PHYS2020-Arduino-Quick-Start/.
 *The sample code performs basic data logging of provided components. We encourage you to extend and customise it to your project-specific needs.*
 
-*Begin by completing the [Connecting to Arduino](#connecting-to-arduino), followed by the section about your specific sensors. Then you could proceed to [Recording Data to SD Card](#Recording-Data-to-SD-Card)*. 
+*Begin by completing the [Connecting to Arduino](#connecting-to-arduino), followed by the section about your specific sensors. Then you could proceed to [Recording Data to SD Card](#Recording-Data-to-SD-Card). 
 
 *Note: the sensor sections from this guide are TLDR versions from [Last Minute Engineers](https://lastminuteengineers.com/electronics/arduino-projects/ ), with some pin changes to integrate the SD card module. You're of course welcome to explore more.*
 
