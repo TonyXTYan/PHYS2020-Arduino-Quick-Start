@@ -1,9 +1,3 @@
----
-toc: true
-toc_label: "Table of Contents"
-toc_icon: "cog"  # Optional, to add an icon
----
-
 # ANU PHYS2020 Thermodynamics Course Arduino Quick Start Guide
 
 Tony.Yan @anu.edu.au

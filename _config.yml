@@ -1,20 +1,18 @@
-remote_theme: mmistakes/minimal-mistakes
+remote_theme: just-the-docs/just-the-docs
 
+# Site settings
+title: Arduino Logger Guide
+description: ANU PHYS2020 course project Arduino quick start tutorial
 
-# Enable table of contents
-toc: true
-toc_depth: 3
+# Enable sidebar TOC
+just_the_docs:
+  show_toc: true
+  toc_depth: 3
 
-# Layout for a single-page documentation site
-defaults:
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "single"
+  # Customize color scheme
+  palette:
+    primary: "#3498db"      # Change to your desired primary color
+    secondary: "#2ecc71"    # Change to your desired secondary color
 
-# Plugins
-plugins:
-  - jekyll-include-cache
-  - jekyll-paginate
-  - jekyll-relative-links
+# Single page setup
+single_page: true
