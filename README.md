@@ -4,7 +4,7 @@ Tony.Yan @anu.edu.au
 
 March 2024
 
-[![GitHub Release](https://img.shields.io/github/v/release/TonyXTYan/PHYS2020-Arduino-Quick-Start?label=)](https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start/releases/latest)
+[![GitHub Release](https://img.shields.io/github/v/release/TonyXTYan/PHYS2020-Arduino-Quick-Start?color=00bb00)](https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start/releases/latest)
 ![arduino](https://img.shields.io/badge/arduino-00878F?logo=arduino&logoColor=white)
 ![arduino](https://img.shields.io/badge/-sd_card_module-red?logo=arduino&logoColor=white&labelColor=gray)
 ![MAX6675](https://img.shields.io/badge/MAX6675-thermocouple-red)
@@ -14,14 +14,11 @@ March 2024
 
 ------
 
-*This is a guide for setting up an Arduino for data logging.*
-*Source codes related to this document is available at https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start, this document is also available at https://tonyxtyan.github.io/PHYS2020-Arduino-Quick-Start/.
-*The sample code performs basic data logging of provided components. We encourage you to extend and customise it to your project-specific needs.*
-
-*Begin by completing the [Connecting to Arduino](#connecting-to-arduino), followed by the section about your specific sensors. Then you could proceed to [Recording Data to SD Card](#Recording-Data-to-SD-Card). 
-
-*Note: the sensor sections from this guide are TLDR versions from [Last Minute Engineers](https://lastminuteengineers.com/electronics/arduino-projects/ ), with some pin changes to integrate the SD card module. You're of course welcome to explore more.*
-
+* *This is a guide for setting up an Arduino for data logging.*
+* *You can download all the source code from [releases](https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start/releases)*
+* *The sample code performs basic data logging of provided components. We encourage you to extend and customise it to your project-specific needs.*
+* *Begin by completing the [Connecting to Arduino](#connecting-to-arduino), followed by the section about your specific sensors. Then you could proceed to [Recording Data to SD Card](#Recording-Data-to-SD-Card).*
+* *Note: the sensor sections from this guide are TLDR versions from [Last Minute Engineers](https://lastminuteengineers.com/electronics/arduino-projects/ ), with some pin changes to integrate the SD card module. You're of course welcome to explore more.*
 > *For reference: I’m using macOS 14.4, Apple Silicon, Arduino IDE 2.3.2, Arduino Nano and various electronics modules from Adrian.*
 
 
