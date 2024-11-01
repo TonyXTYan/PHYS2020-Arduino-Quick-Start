@@ -1,7 +1,12 @@
-remote_theme: just-the-docs/just-the-docs
-title: Arduino Quick Start
+# Minimal Mistakes Configuration
+theme: minimal-mistakes
 
+# Enable the table of contents
+plugins:
+  - jekyll-toc
 
-just_the_docs:
-  toc: true
-  toc_levels: 1..6
+toc:
+  # Position can be 'left' or 'right'
+  position: left
+  # Maximum heading depth to include in TOC
+  depth: 4
