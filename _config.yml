@@ -1,17 +1,1 @@
 remote_theme: mmistakes/minimal-mistakes
-
-# Basic site settings
-title: My Quick Start Guide
-description: Documentation generated from a single README.md file
-
-# Enable table of contents
-toc: true
-toc_depth: 3  # Adjust as needed for depth (1 for H1, 2 for H2, etc.)
-
-# Layout for a single-page documentation site
-defaults:
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "single"
