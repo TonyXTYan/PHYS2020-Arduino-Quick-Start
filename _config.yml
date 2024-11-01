@@ -1,13 +1,18 @@
-remote_theme: just-the-docs/just-the-docs
+remote_theme: mmistakes/minimal-mistakes
 
-# Site settings
-title: My Guide
-description: Documentation generated from a single README.md
+# Basic site settings
+title: My Tutorial
+description: A simple guide generated from README.md
 
-# Enable sidebar TOC
-just_the_docs:
-  show_toc: true
-  toc_depth: 3
+# Enable table of contents
+toc:
+  enabled: true
+  # Specify the selector for headings to include in TOC
+  selector: "h1, h2, h3"
 
-# Single page setup
-single_page: true
+# Layout settings
+minimial_mistakes:
+  single_page: true
+  nav:
+    - title: Home
+      url: /
