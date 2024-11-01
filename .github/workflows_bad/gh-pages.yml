@@ -2,7 +2,7 @@ name: GitHub Pages
 
 on:
   push:
-    branches: [ "main" ]  # Replace with your default branch if different
+    branches: [ "master" ]  # Replace with your default branch if different
 
 jobs:
   build-and-deploy:
