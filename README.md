@@ -4,7 +4,7 @@ Tony.Yan @anu.edu.au
 
 March 2024
 
-[![GitHub Release](https://img.shields.io/github/v/release/TonyXTYan/PHYS2020-Arduino-Quick-Start)](https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start/releases/latest)
+[![GitHub Release](https://img.shields.io/github/v/release/TonyXTYan/PHYS2020-Arduino-Quick-Start?label=)](https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start/releases/latest)
 ![arduino](https://img.shields.io/badge/Arduino-00878F?logo=arduino&logoColor=white)
 ![arduino](https://img.shields.io/badge/-SD_Card_Module-red?logo=arduino&logoColor=white&labelColor=gray)
 ![MAX6675](https://img.shields.io/badge/MAX6675-thermocouple-red)

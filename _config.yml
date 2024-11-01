@@ -1,5 +1,5 @@
 # Minimal Mistakes Configuration
-theme: minimal-mistakes
+remote_theme: minimal-mistakes
 
 # Enable the table of contents
 plugins:
