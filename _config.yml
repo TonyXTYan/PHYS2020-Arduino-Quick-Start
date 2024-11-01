@@ -1,2 +1,5 @@
 remote_theme: sighingnow/jekyll-gitbook
-title: PHYS2020 Arduino Quick Start
+title: Arduino Quick Start
+longtitle: ANU PHYS2020 course project Arduino quick start tutorial
+toc:
+    enabled: true

@@ -199,7 +199,8 @@ For a more detailed guide on using the MPU6050 module, please read https://lastm
 
 You might need soldering skills to make the pins.
 
-![MPU6050 pinout](https://lastminuteengineers.com/wp-content/uploads/arduino/MPU6050-3-axis-Accelerometer-Gyroscope-Module-Pinout.png)
+<!-- ![MPU6050 pinout](https://lastminuteengineers.com/wp-content/uploads/arduino/MPU6050-3-axis-Accelerometer-Gyroscope-Module-Pinout.png) -->
+![MPU6050 pinout](https://components101.com/sites/default/files/component_pin/MPU6050-Pinout.png)
 
 | MPU6050                   | Arduino    |
 | ------------------------- | ---------- |
