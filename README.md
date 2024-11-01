@@ -4,7 +4,9 @@ Tony.Yan @anu.edu.au
 
 March 2024
 
+[![GitHub Release](https://img.shields.io/github/v/release/TonyXTYan/PHYS2020-Arduino-Quick-Start)](https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start/releases/latest)
 ![arduino](https://img.shields.io/badge/Arduino-00878F?logo=arduino&logoColor=white)
+![arduino](https://img.shields.io/badge/-SD_Card_Module-red?logo=arduino&logoColor=white&labelColor=gray)
 ![MAX6675](https://img.shields.io/badge/MAX6675-thermocouple-red)
 ![MAX31855](https://img.shields.io/badge/MAX31855-thermocouple-red)
 ![DS18B20](https://img.shields.io/badge/DS18B20-temperature_sensor-red)
@@ -13,7 +15,7 @@ March 2024
 ------
 
 *This is a guide for setting up an Arduino for data logging.*
-*Source code and this document are available at https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start*
+*Source code and this document are available at https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start*.
 *The sample code performs basic data logging of provided components. We encourage you to extend and customise it to your project-specific needs.*
 
 *Begin by completing the [Connecting to Arduino](#connecting-to-arduino), followed by the section about your specific sensors. Then you could proceed to [Recording Data to SD Card](#Recording-Data-to-SD-Card)*. 
