@@ -1,8 +1,3 @@
----
-title: Arduino Guide
-nav_order: 1
----
-
 # ANU PHYS2020 Thermodynamics Course Arduino Quick Start Guide
 
 Tony.Yan @anu.edu.au

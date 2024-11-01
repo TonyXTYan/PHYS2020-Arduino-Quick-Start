@@ -1,19 +1,7 @@
 remote_theme: just-the-docs/just-the-docs
 title: Arduino Quick Start
 
-# Enable automatic TOC
-aux_links: false
-heading_anchors: true
-search_enabled: true
 
-# Color scheme settings
-color_scheme: light # or "dark"
-
-# Custom color variables
-callouts:
-  note:
-    color: purple
-    opacity: 0.2
-
-# Theme color customization
-accent_color: '#4E64D4'  # Purple - you can use any hex color code
+just_the_docs:
+  toc: true
+  toc_levels: 1..6
