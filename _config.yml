@@ -1,18 +1,17 @@
 remote_theme: mmistakes/minimal-mistakes
 
 # Basic site settings
-title: My Tutorial
-description: A simple guide generated from README.md
+title: My Quick Start Guide
+description: Documentation generated from a single README.md file
 
 # Enable table of contents
-toc:
-  enabled: true
-  # Specify the selector for headings to include in TOC
-  selector: "h1, h2, h3"
+toc: true
+toc_depth: 3  # Adjust as needed for depth (1 for H1, 2 for H2, etc.)
 
-# Layout settings
-minimial_mistakes:
-  single_page: true
-  nav:
-    - title: Home
-      url: /
+# Layout for a single-page documentation site
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "single"
