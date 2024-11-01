@@ -15,8 +15,5 @@ callouts:
     color: purple
     opacity: 0.2
 
-# Custom theme settings
-search_enabled: true
-
 # Theme color customization
 accent_color: '#4E64D4'  # Purple - you can use any hex color code
