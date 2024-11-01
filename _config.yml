@@ -1,15 +1,13 @@
-remote_theme: kitian616/jekyll-TeXt-theme
+remote_theme: just-the-docs/just-the-docs
 
-title: "My Guide"
-description: "Tutorial from README.md"
+# Site settings
+title: My Guide
+description: Documentation generated from a single README.md
 
-include:
-  - README.md
+# Enable sidebar TOC
+just_the_docs:
+  show_toc: true
+  toc_depth: 3
 
-defaults:
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: post
-      toc: true
+# Single page setup
+single_page: true
