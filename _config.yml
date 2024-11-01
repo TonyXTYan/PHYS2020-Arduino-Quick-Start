@@ -1,12 +1,9 @@
-# Minimal Mistakes Configuration
-remote_theme: minimal-mistakes
+remote_theme: mmistakes/minimal-mistakes
 
-# Enable the table of contents
+# Plugins
 plugins:
-  - jekyll-toc
+  - jekyll-readme-index
 
-toc:
-  # Position can be 'left' or 'right'
-  position: left
-  # Maximum heading depth to include in TOC
-  depth: 4
+# Table of Contents settings
+toc: true
+toc_sticky: true
