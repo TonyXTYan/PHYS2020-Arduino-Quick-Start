@@ -18,8 +18,8 @@ just_the_docs:
 single_page: true
 
 aux_links:
-  "GitHub"
-    - "https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start
+  "GitHub Repo":
+    - "https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start"
 
 nav_enabled: true
 
