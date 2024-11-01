@@ -4,11 +4,10 @@ remote_theme: just-the-docs/just-the-docs
 title: Arduino Logger Guide
 description: ANU PHYS2020 course project Arduino quick start tutorial
 
-# Enable sidebar TOC
+# Just the Docs settings
 just_the_docs:
   show_toc: true
   toc_depth: 3
-
   # Customize color scheme
   colors:
     primary: "#3498db"      # Change to your desired primary color
@@ -21,6 +20,6 @@ aux_links:
   "GitHub Repo":
     - "https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start"
 
+# Enable navigation and heading anchors
 nav_enabled: true
-
 heading_anchors: true
