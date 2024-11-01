@@ -4,7 +4,9 @@ Tony.Yan @anu.edu.au
 
 March 2024
 
-![arduino](https://img.shields.io/badge/Arduino-00878F?logo=arduino&logoColor=white)
+[![GitHub Release](https://img.shields.io/github/v/release/TonyXTYan/PHYS2020-Arduino-Quick-Start?label=)](https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start/releases/latest)
+![arduino](https://img.shields.io/badge/arduino-00878F?logo=arduino&logoColor=white)
+![arduino](https://img.shields.io/badge/-sd_card_module-red?logo=arduino&logoColor=white&labelColor=gray)
 ![MAX6675](https://img.shields.io/badge/MAX6675-thermocouple-red)
 ![MAX31855](https://img.shields.io/badge/MAX31855-thermocouple-red)
 ![DS18B20](https://img.shields.io/badge/DS18B20-temperature_sensor-red)
@@ -13,10 +15,10 @@ March 2024
 ------
 
 *This is a guide for setting up an Arduino for data logging.*
-*Source code and this document are available at https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start*
+*Source codes related to this document is available at https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start, this document is also available at https://tonyxtyan.github.io/PHYS2020-Arduino-Quick-Start/.
 *The sample code performs basic data logging of provided components. We encourage you to extend and customise it to your project-specific needs.*
 
-*Begin by completing the [Connecting to Arduino](#connecting-to-arduino), followed by the section about your specific sensors. Then you could proceed to [Recording Data to SD Card](#Recording-Data-to-SD-Card)*. 
+*Begin by completing the [Connecting to Arduino](#connecting-to-arduino), followed by the section about your specific sensors. Then you could proceed to [Recording Data to SD Card](#Recording-Data-to-SD-Card). 
 
 *Note: the sensor sections from this guide are TLDR versions from [Last Minute Engineers](https://lastminuteengineers.com/electronics/arduino-projects/ ), with some pin changes to integrate the SD card module. You're of course welcome to explore more.*
 
@@ -197,7 +199,8 @@ For a more detailed guide on using the MPU6050 module, please read https://lastm
 
 You might need soldering skills to make the pins.
 
-![MPU6050 pinout](https://lastminuteengineers.com/wp-content/uploads/arduino/MPU6050-3-axis-Accelerometer-Gyroscope-Module-Pinout.png)
+<!-- ![MPU6050 pinout](https://lastminuteengineers.com/wp-content/uploads/arduino/MPU6050-3-axis-Accelerometer-Gyroscope-Module-Pinout.png) -->
+![MPU6050 pinout](https://components101.com/sites/default/files/component_pin/MPU6050-Pinout.png)
 
 | MPU6050                   | Arduino    |
 | ------------------------- | ---------- |
