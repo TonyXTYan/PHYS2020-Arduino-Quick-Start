@@ -1,7 +1,15 @@
-remote_theme: just-the-docs/just-the-docs
+title: PHYS2020 Arduino Quick Start
+description: ANU PHYS2020 course project Arduino quick start tutorial
+theme: minima
 
-plugins:
-  - jekyll-remote-theme
+markdown: kramdown
+kramdown:
+  input: GFM
 
-just_the_docs:
-  sidebar: true
+# Use the custom layout for the homepage
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
