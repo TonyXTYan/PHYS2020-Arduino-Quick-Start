@@ -10,9 +10,17 @@ just_the_docs:
   toc_depth: 3
 
   # Customize color scheme
-  palette:
+  colors:
     primary: "#3498db"      # Change to your desired primary color
     secondary: "#2ecc71"    # Change to your desired secondary color
 
 # Single page setup
 single_page: true
+
+aux_links:
+  - title: "GitHub"
+    url: "https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start
+
+nav_enabled: true
+
+heading_anchors: true
