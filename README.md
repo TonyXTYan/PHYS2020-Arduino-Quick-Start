@@ -1,3 +1,9 @@
+---
+layout: default
+title: PHYS2020 Arduino Quick Start Guide
+description: Guide for setting up Arduino data logging in the ANU PHYS2020 Thermodynamics Course
+---
+
 # ANU PHYS2020 Thermodynamics Course Arduino Quick Start Guide
 
 Tony.Yan @anu.edu.au
@@ -22,25 +28,6 @@ March 2024
 * *Note: the sensor sections from this guide are TLDR versions from [Last Minute Engineers](https://lastminuteengineers.com/electronics/arduino-projects/ ), with some pin changes to integrate the SD card module. You're of course welcome to explore more.*
 * *For reference: I’m using macOS 14.4, Apple Silicon, Arduino IDE 2.3.2, Arduino Nano and various electronics modules from Adrian.*
 
-
-------
-- [ANU PHYS2020 Thermodynamics Course Arduino Quick Start Guide](#anu-phys2020-thermodynamics-course-arduino-quick-start-guide)
-  - [Connecting to Arduino](#connecting-to-arduino)
-    - [*Other Common Issues/Troubleshooting:*](#other-common-issuestroubleshooting)
-    - [General Info and Tips about using Arduino in PHYS2020 Project](#general-info-and-tips-about-using-arduino-in-phys2020-project)
-  - [MAX6675 Temperature Sensor](#max6675-temperature-sensor)
-    - [Tips \& Tricks](#tips--tricks)
-  - [MAX31855](#max31855)
-    - [Tips \& Tricks](#tips--tricks-1)
-  - [DS18B20 Temperature Sensor](#ds18b20-temperature-sensor)
-    - [DS18B20 usage notes](#ds18b20-usage-notes)
-  - [MPU6050 Accelerometer and Gyroscope](#mpu6050-accelerometer-and-gyroscope)
-    - [Notes](#notes)
-  - [Pressure Sensor](#pressure-sensor)
-  - [Recording Data to SD Card](#recording-data-to-sd-card)
-    - [Verify your SD card and reader module works](#verify-your-sd-card-and-reader-module-works)
-    - [Using the sample code](#using-the-sample-code)
-      - [Other things to consider](#other-things-to-consider)
 
 ------
 
