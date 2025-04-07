@@ -13,6 +13,9 @@ File myFile;  // declear a file object for reading/writing
 #include "max6675.h"
 MAX6675 thermocouple(6, 5, 4); // SCK - pin 6, CS - pin 5, SO - pin 4.
 
+// MAX31855 Thermocouple (untested)
+#include "max31855.h"
+MAX31855 thermocouple2(5, 4, 3); // SCK - pin 6, CS - pin 5, SO - pin 4.
 
 // DS18B20 Temperature Sensor 
 #include <OneWire.h>
@@ -99,6 +102,10 @@ void loop()
   // MAX6675
   logToSerialAndSD("TC");  
   logToSerialAndSD(thermocouple.readCelsius()); 
+
+  // MAX31855 (untested)
+  logToSerialAndSD("TC2");
+  logToSerialAndSD(thermocouple2.readCelsius());
 
   // DS18B20
   tempSensor.requestTemperatures(); // send the command to get temperatures 

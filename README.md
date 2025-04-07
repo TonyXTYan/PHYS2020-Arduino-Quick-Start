@@ -17,6 +17,7 @@ March 2024
 * *This is a guide for setting up an Arduino for data logging.*
 * *You can download all the source code from [releases](https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start/releases)*
 * *The sample code performs basic data logging of provided components. We encourage you to extend and customise it to your project-specific needs.*
+* *Make sure to double-check any pin connections before powering on, even though Arduino has some built-in protections, it's still possible to fry something...*
 * *Begin by completing the [Connecting to Arduino](#connecting-to-arduino), followed by the section about your specific sensors. Then you could proceed to [Recording Data to SD Card](#Recording-Data-to-SD-Card).*
 * *Note: the sensor sections from this guide are TLDR versions from [Last Minute Engineers](https://lastminuteengineers.com/electronics/arduino-projects/ ), with some pin changes to integrate the SD card module. You're of course welcome to explore more.*
 * *For reference: I’m using macOS 14.4, Apple Silicon, Arduino IDE 2.3.2, Arduino Nano and various electronics modules from Adrian.*
@@ -53,6 +54,15 @@ Once you have the Arduino IDE installed, we need to verify that the Arduino work
 As illustrated in the figure below, I also strongly recommend mounting your Arduino Nano onto a breadboard and connecting the 5V and 3.3V to each power rail on the breadboard. This makes connecting various modules much simpler later.  
 
 ![breadboard and voltage rails](screenshots/breadboard-and-voltage-rails.jpg)
+
+As a side note, breadboards internally are connected like follows, 
+![breadboard](screenshots/breadboard-internal-connections.jpg)
+So you can have 3.3V power rails on the top and another 5V rails on the bottom. 
+Note, these 5V and 3.3V are regulated by Arduino internal components, you can use them to power a few chips. But when powering lots of modules or a display, I suggest using the breadboard power supply (picture below and Adrian should have some on requests). If you decide to use one of these, make sure you set the jumper pins correctly, i.e. don't connect the 5V power supply to the 3.3V pin on Arduino, [you may fry it](https://forum.arduino.cc/t/accidentally-applied-5v-supply-to-3-3v-pin-something-smoked-what-was-it/259012). 
+
+![breadboard power supply](screenshots/breadboard-power-supply.jpg)
+
+
 
 Our Arduino Nano uses a USB Type-C connector; you can connect it to your computer with any Type-C cable and Arduino can be powered from Type-C. 
 
@@ -99,16 +109,17 @@ You might find the following Arduino Pin layout helpful (available at https://co
 ![Pinout-NANO_latest](https://content.arduino.cc/assets/Pinout-NANO_latest.png)
 
 * If you want to power the Arduino without connecting it to a computer, you can use either
-    * 6-20V unregulated external power supply (pin 30 VIN), e.g. a 9V battery.
-    * 5V regulated external power supply (pin 27 +5V). e.g. provided breadboard power supply, you might prefer this if you want to use some high current modules such as a display. 
-    * The power source is automatically selected to the highest voltage source. 
+    * 6-20V unregulated external power supply (pin 30 **VIN**), e.g. a 9V battery.
+    * 5V regulated external power supply (pin 27 **+5V**). e.g. provided breadboard power supply, you might prefer this if you want to use some high current modules such as a display. 
+    * The power source is automatically selected as the highest voltage source. 
 * In general, disconnect all unused components from the Arduino pin. Some Arduino libraries will hardcode specific pins and send current through without warning. 
 * Be careful about which voltage rail you connect the modules to! Some modules come with a built-in voltage regulator, so you can connect them to either 3.3V or 5V, while some don't and have to be connected to 3.3V; otherwise, they could get permanently damaged. 
 * You should probably test each of your sensors and make sure they meet the manufacturer's claims before quoting their measurements scientifically, e.g., knowing their precision, measurement range, systematic error, and response time. 
-* ChatGPT is a fantastic place to get some starter code and Arduino Q&A.
+* AI & LLM are fantastic at generating Arduino code and general Q&A, just make sure you understand every line it generates before uploading to Arduino, especially the physical pin connections match the code. Hint: [GitHub Copilot](https://docs.github.com/en/copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/getting-started-with-copilot-on-your-personal-account/getting-free-access-to-copilot-pro-as-a-student-teacher-or-maintainer) offers many most advanced AI models for free to education accounts.
+* I strongly recommend some kind of version control of your code and you can include the version histories as part of your final submission. I mostly use [Git](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F) hosted on [GitHub](https://docs.github.com/en/get-started/start-your-journey/about-github-and-git), there are also [GitLab](https://docs.gitlab.com/tutorials/) and [ANU self-hosted GitLab](https://gitlab.cecs.anu.edu.au) (though I will *not* recommend the last one, it consistently crashes around the end of each semester).
 * [Arduino Official Documentation](https://docs.arduino.cc) and [Arduino Offical Forum](https://forum.arduino.cc) are also good sources to look up for any issues.
 * https://lastminuteengineers.com/electronics/arduino-projects/ provides extensive and detailed guides on Arduino modules. I strongly recommend reading them to understand the module you are using, especially if you want to go beyond the sample codes. (I've also stolen some figures from their website for educational purposes.)
-
+  
 
 ## MAX6675 Temperature Sensor
 
@@ -177,7 +188,7 @@ Once the library is installed, open the provided sample code at `Menu -> File ->
 Try uploading their sample script and opening the serial monitor (`Menu -> Tools -> Serial Monitor` or `Shift-Cmd-M` or the top right Magnifying glass icon). You should see the thermocouple printing the temperatures onto the Serial Monitor. You could also show their timestamps by toggling the clock icon on the right. 
 
 ### Tips & Tricks
-* If you want to use multiple MAX31855, you should let them share the same `DO` and `CLK` pins physically on the Arduino and give them the same `MAXDO` and `MAXCLK` in the code. Then, you can connect different `CS` pins to the Arduino, and assign them to different `MAXCS` in the code. e.g.
+* If you want to use multiple MAX31855, you should let them share the same `DO` and `CLK` pins physically on the Arduino and give them the same `MAXDO` and `MAXCLK` variables in the code. Then, you can connect different `CS` pins to the Arduino, and assign them to different `MAXCS` in the code. This way, you can free up some pins and connect to other sensors or modules. Below is an example implementation of multiple MAX31855s. 
 ```c++
 #define MAXDO 2
 #define MAXCLK 3
@@ -332,9 +343,9 @@ The first three lines are just checking setup; from the fourth line onwards, the
 
 The data are logged in CSV (comma separated value) format which can be easily read by [Mathematica](https://reference.wolfram.com/language/ref/format/CSV.html), [Python](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html), [Excel](https://support.microsoft.com/en-au/office/import-or-export-text-txt-or-csv-files-5250ac4c-663c-47ce-937b-339e391393ba) or your preferred stats tool. 
 
-You should comment out (`Cmd-/`) any code about the sensors that you are not using. 
+You should **comment out (`Cmd-/`) any code about the sensors that you are *not* using**. 
 
-* Codes about MAX6675: 
+* Code about MAX6675: 
 
   ```c++
   // Line 13-14
@@ -342,40 +353,53 @@ You should comment out (`Cmd-/`) any code about the sensors that you are not usi
   #include "max6675.h"
   MAX6675 thermocouple(6, 5, 4); // SCK - pin 6, CS - pin 5, SO - pin 4.
   ...
-  // Line 100-101
+  // Line 102-104
   // MAX6675
   logToSerialAndSD("TC");  
   logToSerialAndSD(thermocouple.readCelsius()); 
   ```
+* Code about MAX31855 (**untested!**)
 
-* Codes about DS18B20
+  ```c++
+  // Line 16-18
+  // MAX31855 Thermocouple
+  #include <MAX31855.h>
+  MAX31855 thermocouple2(MAXCLK, MAXCS, MAXSO);
+  ...
+  // Line 106-108
+  // MAX31855
+  logToSerialAndSD("TC");
+  logToSerialAndSD(thermocouple2.readCelsius());
+  ```
+
+* Code about DS18B20
 
     ```c++
-    // Line 18-21
+    // Line 20-24
     // DS18B20 Temperature Sensor 
     #include <OneWire.h>
     #include <DallasTemperature.h>
     OneWire oneWire(2);         // setup a oneWire with DS18B20 DQ connected to pin 2 
     DallasTemperature tempSensor(&oneWire); // pass oneWire to DallasTemperature library
     ...
-    // Line 104-106
+    // Line 110-113
     // DS18B20
     tempSensor.requestTemperatures(); // send the command to get temperatures 
     logToSerialAndSD("TS");
     logToSerialAndSD(tempSensor.getTempCByIndex(0));
     ```
 
-* Codes about MPU6050
+* Code about MPU6050
 
     ```c++
-    // Line 25
+    // Line 27-31
     // MPU6050 Accelerometer and Gyroscope
     #include <Adafruit_MPU6050.h>
     #include <Adafruit_Sensor.h>
     #include <Wire.h>
     Adafruit_MPU6050 mpu;
     ...
-    // Lines 83-92
+    // Lines 85-95
     // MPU6050 
     sensors_event_t a, g, temp; // Get new sensor events with the readings
     mpu.getEvent(&a, &g, &temp);
@@ -389,10 +413,10 @@ You should comment out (`Cmd-/`) any code about the sensors that you are not usi
     logToSerialAndSD(g.gyro.z);
     ```
 
-* Codes about pressure sensor
+* Code about pressure sensor
 
     ```c++
-    // Lines 96-97
+    // Lines 98-100
     // Pressure Sensor at Analog pin A1 
     logToSerialAndSD("V1");
     logToSerialAndSD(analogRead(A1)*5.0/1024.0);
