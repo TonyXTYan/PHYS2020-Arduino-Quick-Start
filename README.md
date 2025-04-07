@@ -217,7 +217,7 @@ We provide the DS18B20 sensor that comes in the waterproof probe. You also need 
 | GND             | GND        |
 | DQ (Data Queue) | D2         |
 
-![breadboard DS18B20](screenshots/breadboard_DS18B20.JPG)
+![breadboard DS18B20](screenshots/breadboard_DS18B20.jpg)
 
 You also need to grab a code library to use the DS18B20 module. Go to `Menu -> Sketch -> Include Library -> Manage Libraries ` (or `Shift-Cmd-I` or click on the Library icon in the left sidebar) and search for `DS18B20`.
 I used the official library from `DallasTemperature`, but you're of course welcome to experiment with other ones. 
@@ -257,7 +257,7 @@ You might need soldering skills to make the pins.
 
 ![IMG_2252](screenshots/IMG_2252.jpg)
 
-You also need to grab a code library to use the MPU6050 module, go to `Menu -> Sketch -> Include Library -> Manage Libraries ` (or `Shift-Cmd-I` or click on the Library icon in the left sidebar), and search up `MPU6050`.![breadboard - MPU6050](screenshots/breadboard - MPU6050.JPG)
+You also need to grab a code library to use the MPU6050 module, go to `Menu -> Sketch -> Include Library -> Manage Libraries ` (or `Shift-Cmd-I` or click on the Library icon in the left sidebar), and search up `MPU6050`.![breadboard - MPU6050](screenshots/breadboard - MPU6050.jpg)
 
 I used the official library of `Adafruit`, but you're of course welcome to experiment with other ones. 
 
