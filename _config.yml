@@ -12,21 +12,16 @@ aux_links:
   "View on GitHub":
     - "https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start"
 
-# Enable navigation
-has_nav: true
-nav_external_links:
-  - title: GitHub Repository
-    url: https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start
-    hide_icon: false
+# Enable navigation and TOC
+nav_enabled: true
+heading_anchors: true
+
+# Back to top link
+back_to_top: true
+back_to_top_text: "Back to top"
+
+# Footer content
+footer_content: "Copyright &copy; 2024 Tony Yan"
 
 # Enable TOC on every page
-has_toc: true
-
-# Configure heading levels for navigation
-nav_level: 3
-
-# Show table of contents in left sidebar
-toc:
-  enabled: true
-  h_min: 1
-  h_max: 3
+enable_copy_code_button: true
