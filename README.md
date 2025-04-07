@@ -28,8 +28,10 @@ March 2024
   - [Connecting to Arduino](#connecting-to-arduino)
     - [*Other Common Issues/Troubleshooting:*](#other-common-issuestroubleshooting)
     - [General Info and Tips about using Arduino in PHYS2020 Project](#general-info-and-tips-about-using-arduino-in-phys2020-project)
-  - [MAX6675 (or MAX31855) Temperature Sensor](#max6675-or-max31855-temperature-sensor)
+  - [MAX6675 Temperature Sensor](#max6675-temperature-sensor)
     - [Tips \& Tricks](#tips--tricks)
+  - [MAX31855](#max31855)
+    - [Tips \& Tricks](#tips--tricks-1)
   - [DS18B20 Temperature Sensor](#ds18b20-temperature-sensor)
     - [DS18B20 usage notes](#ds18b20-usage-notes)
   - [MPU6050 Accelerometer and Gyroscope](#mpu6050-accelerometer-and-gyroscope)
@@ -50,7 +52,7 @@ Once you have the Arduino IDE installed, we need to verify that the Arduino work
 
 As illustrated in the figure below, I also strongly recommend mounting your Arduino Nano onto a breadboard and connecting the 5V and 3.3V to each power rail on the breadboard. This makes connecting various modules much simpler later.  
 
-![breadboard and voltage rails](screenshots/breadboard and voltage rails.JPG)
+![breadboard and voltage rails](screenshots/breadboard-and-voltage-rails.jpg)
 
 Our Arduino Nano uses a USB Type-C connector; you can connect it to your computer with any Type-C cable and Arduino can be powered from Type-C. 
 
@@ -108,11 +110,9 @@ You might find the following Arduino Pin layout helpful (available at https://co
 * https://lastminuteengineers.com/electronics/arduino-projects/ provides extensive and detailed guides on Arduino modules. I strongly recommend reading them to understand the module you are using, especially if you want to go beyond the sample codes. (I've also stolen some figures from their website for educational purposes.)
 
 
-## MAX6675 (or MAX31855) Temperature Sensor
+## MAX6675 Temperature Sensor
 
 For a more detailed guide on using the MAX6675 module, please read https://lastminuteengineers.com/max6675-thermocouple-arduino-tutorial/ 
-
-The MAX31855 is a newer version MAX6675, but they work basically the same.
 
 The kit includes 
 
@@ -136,7 +136,7 @@ The following table shows the connections used in the sample code:
 | CS (Chip Select pin)                                   | D5         |
 | SO (Serial data Out)                                   | D4         |
 
-![breadboard MAX6678](screenshots/breadboard_MAX6678.JPG)
+![breadboard MAX6678](screenshots/breadboard_MAX6678.jpg)
 
 You also need to grab a code library to use the MAX6675 module. Go to `Menu -> Sketch -> Include Library -> Manage Libraries ` (or `Shift-Cmd-I` or click on the Library icon in the left sidebar) and search for `MAX6675`.
 I used the official library from Adafruit, but you're of course welcome to experiment with other ones. 
@@ -154,6 +154,43 @@ Try uploading their sample script and opening the serial monitor (`Menu -> Tools
 ### Tips & Tricks
 
 * If you want to use multiple MAX6675 (or MAX31855), you can (should) let them share the same SO and CLK pins and only connect different CS pins to the Arduino. 
+
+
+## MAX31855
+The MAX31855 is a newer version MAX6675, but they work basically the same (I haven't test & verify the this exact guide of MAX31855, if there is any issues please let me know). 
+![MAX31855 pinout](screenshots/pinout_MAX31855.jpg)
+![MAX6675 pinout](screenshots/pinout_MAX6675.jpg)
+
+| MAX 31855 | MAX 6675 Equivalent | Arduino to MAX31855   | Sample code (`serialthermocouple`) variable |
+| --------- | -------- | ---------- | ----------------- |
+| Vin  (Power input)   | VCC      | 3.3V or 5V | -       |
+| V3o (only connect one of V3o or Vin)       | -        | 3.3V       | -      |
+| GND  (Ground)     | GND      | GND        | -       | 
+| CLK  (Serial Clock)            | SCK      | D5         | `MAXCLK` |
+| CS    (Chip Select)            | CS       | D4         | `MAXCS` |
+| SO/DO    (Serial Data out)     | SO       | D3         | `MAXSO` |
+
+You'll need to go to `Side bar -> Library Manager` (or `Cmd-Shift-I`, or `Menu -> Sketch -> Include Library -> Manage Libraries`), and search for `Max31855` and install the library by `Adafruit` (feel free to experiemnt libraries published by others). 
+![MAX31855 - library](screenshots/max31855-adafruit.png) 
+Once the library is installed, open the provided sample code at `Menu -> File -> Examples -> Adafruit MAX31855 -> serialthermocouple`; there's also a copy of it named `MAX31855SerialLogger.ino` in this repository.
+![MAX31855 - sample](screenshots/max31855-serialthermocouple.png)
+Try uploading their sample script and opening the serial monitor (`Menu -> Tools -> Serial Monitor` or `Shift-Cmd-M` or the top right Magnifying glass icon). You should see the thermocouple printing the temperatures onto the Serial Monitor. You could also show their timestamps by toggling the clock icon on the right. 
+
+### Tips & Tricks
+* If you want to use multiple MAX31855, you should let them share the same `DO` and `CLK` pins physically on the Arduino and give them the same `MAXDO` and `MAXCLK` in the code. Then, you can connect different `CS` pins to the Arduino, and assign them to different `MAXCS` in the code. e.g.
+```c++
+#define MAXDO 2
+#define MAXCLK 3
+#define MAXCS1 4
+Arduino_MAX31855 thermocouple1(MAXCLK, MAXCS1, MAXDO);
+#define MAXCS2 5
+Arduino_MAX31855 thermocouple2(MAXCLK, MAXCS2, MAXDO);
+...
+```
+![Many MAX31855](screenshots/_DSC3032.jpg)
+
+
+
 
 ## DS18B20 Temperature Sensor
 
@@ -207,7 +244,7 @@ You might need soldering skills to make the pins.
 | SDA (Serial Data Line)    | A4 (SDA)   |
 | Other pins not connected. |            |
 
-![IMG_2252](screenshots/IMG_2252.JPG)
+![IMG_2252](screenshots/IMG_2252.jpg)
 
 You also need to grab a code library to use the MPU6050 module, go to `Menu -> Sketch -> Include Library -> Manage Libraries ` (or `Shift-Cmd-I` or click on the Library icon in the left sidebar), and search up `MPU6050`.![breadboard - MPU6050](screenshots/breadboard - MPU6050.JPG)
 
@@ -258,7 +295,7 @@ For the SD card module to work with the sample code (`SDCardDataLogger.ino`), co
 
 
 
-![IMG_2253](screenshots/IMG_2253.JPG)
+![IMG_2253](screenshots/IMG_2253.jpg)
 
 ### Verify your SD card and reader module works
 
@@ -270,7 +307,7 @@ Open the built-in sample code at `Menu -> File -> Examples -> SD -> CardInfo` , 
 
 Unless you installed all the sensors mentioned in the exact pins (in pic below), the sample code `SDCardDataLogger.ino` would most likely throw some errors and complain about missing sensors. 
 
-![IMG_2254](./screenshots/IMG_2254.jpeg)
+![IMG_2254](./screenshots/IMG_2254.jpg)
 
 If you do have all sensors installed, then `SDCardDataLogger.ino` would log data to both the SD card and Serial Monitor, and it could also log data to the SD card without connecting it to a computer. The Serial monitor output would look something like this: 
 
