@@ -1,5 +1,7 @@
-# filepath: /Users/tonyyan/Documents/_ANU/_PHYS2020/Project Notes/PHYS2020 Arduino Quick Start/_config.yml
-theme: just-the-docs
+remote_theme: just-the-docs/just-the-docs
+
+# Enable or disable the site search
+search_enabled: true
 
 # Optional: Configure TOC settings
 just_the_docs:
