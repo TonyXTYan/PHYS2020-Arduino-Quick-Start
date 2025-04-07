@@ -1,22 +1,26 @@
+---
+layout: spec
+---
 # ANU PHYS2020 Thermodynamics Course Arduino Quick Start Guide
 
 Tony.Yan @anu.edu.au
 
-March 2024
-
 [![GitHub Release](https://img.shields.io/github/v/release/TonyXTYan/PHYS2020-Arduino-Quick-Start?color=00bb00)](https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start/releases/latest)
-![arduino](https://img.shields.io/badge/arduino-00878F?logo=arduino&logoColor=white)
-![arduino](https://img.shields.io/badge/-sd_card_module-red?logo=arduino&logoColor=white&labelColor=gray)
-![MAX6675](https://img.shields.io/badge/MAX6675-thermocouple-red)
-![MAX31855](https://img.shields.io/badge/MAX31855-thermocouple-red)
-![DS18B20](https://img.shields.io/badge/DS18B20-temperature_sensor-red)
-![MPU6050](https://img.shields.io/badge/MPU6050-accelerometer_and_gyroscope-red)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/TonyXTYan/PHYS2020-Arduino-Quick-Start)
 
-------
+![arduino](https://img.shields.io/badge/arduino-00878F?logo=arduino&logoColor=white)
+![arduino](https://img.shields.io/badge/-sd_card_module-blue?logo=arduino&logoColor=white&labelColor=gray)
+![MAX6675](https://img.shields.io/badge/MAX6675-thermocouple-blue)
+![MAX31855](https://img.shields.io/badge/MAX31855-thermocouple-blue)
+![DS18B20](https://img.shields.io/badge/DS18B20-temperature_sensor-blue)
+![MPU6050](https://img.shields.io/badge/MPU6050-accelerometer_and_gyroscope-blue)
+![Pressure Sensor](https://img.shields.io/badge/Generic-pressure_sensor-blue)
+
+-----
 
 * *This is a guide for setting up an Arduino for data logging.*
 * *You can download all the source code from [releases](https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start/releases)*
-* *The sample code performs basic data logging of provided components. We encourage you to extend and customise it to your project-specific needs.*
+* *The sample code performs basic data logging of various kit components. We encourage you to extend and customise it to your project-specific needs.*
 * *Make sure to double-check any pin connections before powering on, even though Arduino has some built-in protections, it's still possible to fry something...*
 * *Begin by completing the [Connecting to Arduino](#connecting-to-arduino), followed by the section about your specific sensors. Then you could proceed to [Recording Data to SD Card](#Recording-Data-to-SD-Card).*
 * *Note: the sensor sections from this guide are TLDR versions from [Last Minute Engineers](https://lastminuteengineers.com/electronics/arduino-projects/ ), with some pin changes to integrate the SD card module. You're of course welcome to explore more.*
@@ -24,8 +28,10 @@ March 2024
 
 
 ------
+## Table of Contents
 
 - [ANU PHYS2020 Thermodynamics Course Arduino Quick Start Guide](#anu-phys2020-thermodynamics-course-arduino-quick-start-guide)
+  - [Table of Contents](#table-of-contents)
   - [Connecting to Arduino](#connecting-to-arduino)
     - [*Other Common Issues/Troubleshooting:*](#other-common-issuestroubleshooting)
     - [General Info and Tips about using Arduino in PHYS2020 Project](#general-info-and-tips-about-using-arduino-in-phys2020-project)
@@ -41,13 +47,14 @@ March 2024
   - [Recording Data to SD Card](#recording-data-to-sd-card)
     - [Verify your SD card and reader module works](#verify-your-sd-card-and-reader-module-works)
     - [Using the sample code](#using-the-sample-code)
-      - [Other things to consider](#other-things-to-consider)
+    - [Other things to consider](#other-things-to-consider)
 
 ------
 
+
 ## Connecting to Arduino
 
-First, download Arduino IDE (integrated development environment) from https://www.arduino.cc/en/software. 
+First, download Arduino IDE (integrated development environment) from [https://www.arduino.cc/en/software](https://www.arduino.cc/en/software). 
 
 Once you have the Arduino IDE installed, we need to verify that the Arduino works by connecting it to your computer and the IDE. 
 
@@ -96,15 +103,23 @@ Then try upload again and it should upload without error.
 
 ### *Other Common Issues/Troubleshooting:*
 
-* Try different USB cable
-* Try different USB ports, avoid using adapters
-* Try peer's Arduino
-
-If there are other Arduino setting-up issues, feel free to contact us.
+* Disconnect all the pins expect the USB cable.
+* Press the reset button on the Arduino before uploading.
+* Try running the Arduino IDE in administrator/sudo mode.
+* Close other apps that might be using the COM port.
+* Restart computer.
+* Check if COM/Serial port appears in Device Manager (Windows) or System Information (macOS).
+* Reinstall the latest driver (CH340, FTDI).
+* Check if the Arduino is detected in the IDE (`Tools -> Port`).
+* Check the correct Arduino board is selected in the IDE (`Tools -> Board`).
+* Try different USB cable.
+* Try different USB ports, avoid using adapters.
+* Try different Arduino.
+* Email us 😉👍. 
 
 ### General Info and Tips about using Arduino in PHYS2020 Project
 
-You might find the following Arduino Pin layout helpful (available at https://content.arduino.cc/assets/Pinout-NANO_latest.pdf). 
+You might find the following Arduino Pin layout helpful (available [here](https://content.arduino.cc/assets/Pinout-NANO_latest.pdf)). 
 
 ![Pinout-NANO_latest](https://content.arduino.cc/assets/Pinout-NANO_latest.png)
 
@@ -217,7 +232,7 @@ We provide the DS18B20 sensor that comes in the waterproof probe. You also need 
 | GND             | GND        |
 | DQ (Data Queue) | D2         |
 
-![breadboard DS18B20](screenshots/breadboard_DS18B20.JPG)
+![breadboard DS18B20](screenshots/breadboard_DS18B20.jpg)
 
 You also need to grab a code library to use the DS18B20 module. Go to `Menu -> Sketch -> Include Library -> Manage Libraries ` (or `Shift-Cmd-I` or click on the Library icon in the left sidebar) and search for `DS18B20`.
 I used the official library from `DallasTemperature`, but you're of course welcome to experiment with other ones. 
@@ -257,7 +272,7 @@ You might need soldering skills to make the pins.
 
 ![IMG_2252](screenshots/IMG_2252.jpg)
 
-You also need to grab a code library to use the MPU6050 module, go to `Menu -> Sketch -> Include Library -> Manage Libraries ` (or `Shift-Cmd-I` or click on the Library icon in the left sidebar), and search up `MPU6050`.![breadboard - MPU6050](screenshots/breadboard - MPU6050.JPG)
+You also need to grab a code library to use the MPU6050 module, go to `Menu -> Sketch -> Include Library -> Manage Libraries ` (or `Shift-Cmd-I` or click on the Library icon in the left sidebar), and search up `MPU6050`.![breadboard - MPU6050](screenshots/breadboard - MPU6050.jpg)
 
 I used the official library of `Adafruit`, but you're of course welcome to experiment with other ones. 
 
@@ -424,7 +439,7 @@ You should **comment out (`Cmd-/`) any code about the sensors that you are *not*
 
 
 
-#### Other things to consider
+### Other things to consider
 
 * `SDCardDataLogger.ino` will dump data onto SD immediately after the Arduino is powered, and the only way to stop is to power down the Arduino. Consider adding a push button to start and stop recording. 
 * Arduino doesn't have a built-in real-time clock, only an internal timer to count the time from boot. So the only labels for which recording are their file names. You should think about how to organise your data files. 
