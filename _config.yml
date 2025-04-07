@@ -1,14 +1,12 @@
-theme: jekyll-theme-minimal
-markdown: kramdown
+remote_theme: eecs485staff/primer-spec
+plugins:
+  - jekyll-remote-theme
+  - jekyll-optional-front-matter
+  - jekyll-readme-index
+  - jekyll-relative-links
+  - jemoji
 kramdown:
   input: GFM
-plugins:
-  - jekyll-toc
-  - jekyll-relative-links
-relative_links:
-  enabled: true
-  collections: true
-toc:
-  min_level: 1
-  max_level: 3
-  no_toc_section_class: 'd-none'
+readme_index:
+  remove_originals: true
+  with_frontmatter: true
