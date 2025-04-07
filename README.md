@@ -1,7 +1,10 @@
 ---
 layout: default
-title: PHYS2020 Arduino Quick Start Guide
-description: Guide for setting up Arduino data logging in the ANU PHYS2020 Thermodynamics Course
+title: PHYS2020 Arduino Quick Start
+description: PHYS2020 Arduino Guide for Data Logging
+author: Tony Yan
+show_downloads: false
+navigation: true
 ---
 
 # ANU PHYS2020 Thermodynamics Course Arduino Quick Start Guide

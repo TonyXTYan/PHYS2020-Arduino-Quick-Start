@@ -1,10 +1,25 @@
+# Theme configuration
 remote_theme: vaibhavvikas/jekyll-theme-minimalistic
-title: PHYS2020 Arduino Quick Start Guide
-description: Thermodynamics Course Arduino Guide
+title: PHYS2020 Arduino Quick Start
+description: "Thermodynamics Course Arduino Guide"
+logo: false
+favicon: false
+navbar: true
+navigation: true
+highlighter: rouge
+
+# Theme appearance
+color-scheme: light
+show_downloads: false
+
+# Plugins
 plugins:
+  - jekyll-seo-tag
   - jekyll-remote-theme
 
-# Theme settings
-minimal: true
-sidebar: true
-heading_anchors: true
+# Other settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  toc_levels: 1..3
