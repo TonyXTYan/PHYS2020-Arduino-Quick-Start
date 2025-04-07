@@ -1,1 +1,9 @@
+title: PHYS2020 Arduino Quick Start
+description: Quick start guide for Arduino projects in PHYS2020
 remote_theme: slatedocs/slate
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-remote-theme
+  - jekyll-sitemap
+  - jekyll-seo-tag
