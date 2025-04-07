@@ -1,21 +1,14 @@
-remote_theme: just-the-docs/just-the-docs
+theme: jekyll-theme-minimal
+title: PHYS2020 Arduino Quick Start
+description: Quick start guide for Arduino-based data logging in PHYS2020
 
-# Enable or disable the site search
-search_enabled: true
-
-# Configure TOC settings
+markdown: kramdown
 kramdown:
+  parse_block_html: true
+  auto_ids: true
   toc_levels: 1..3
 
-# Theme settings
-aux_links:
-  "View on GitHub":
-    - "https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start"
-
-# Enable navigation
-nav_enabled: true
-
-# Show table of contents for all pages
+# Show table of contents
 toc:
   enabled: true
   h_min: 1

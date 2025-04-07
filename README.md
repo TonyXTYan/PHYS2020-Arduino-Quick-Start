@@ -23,8 +23,15 @@ March 2024
 * *For reference: I’m using macOS 14.4, Apple Silicon, Arduino IDE 2.3.2, Arduino Nano and various electronics modules from Adrian.*
 
 
+## Table of Contents
+{: .no_toc }
+
+* TOC
+{:toc}
+
 ------
 - [ANU PHYS2020 Thermodynamics Course Arduino Quick Start Guide](#anu-phys2020-thermodynamics-course-arduino-quick-start-guide)
+  - [Table of Contents](#table-of-contents)
   - [Connecting to Arduino](#connecting-to-arduino)
     - [*Other Common Issues/Troubleshooting:*](#other-common-issuestroubleshooting)
     - [General Info and Tips about using Arduino in PHYS2020 Project](#general-info-and-tips-about-using-arduino-in-phys2020-project)
