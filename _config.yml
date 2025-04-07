@@ -1,9 +1,10 @@
-remote_theme: mmistakes/minimal-mistakes
-title: "PHYS2020 Arduino Quick Start"
-plugins:
-  - jekyll-remote-theme
-  - jekyll-include-cache
+  remote_theme: pmarsceill/just-the-docs
+  plugins:
+    - jekyll-remote-theme
 
-# Minimal Mistakes theme settings
-minimal_mistakes_skin: "default"
-search: true
+  just_the_docs:
+    toc: true
+    toc_label: "Table of Contents"
+    toc_icon: "list-alt"
+    toc_sticky: true
+    toc_levels: 1..6
