@@ -1,3 +1,8 @@
+  ---
+  layout: single
+  toc: true
+  toc_sticky: true
+  ---
 # ANU PHYS2020 Thermodynamics Course Arduino Quick Start Guide
 
 Tony.Yan @anu.edu.au
