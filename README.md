@@ -1,8 +1,7 @@
-  ---
-  layout: single
-  toc: true
-  toc_sticky: true
-  ---
+---
+layout: default
+title: Arduino Quick Start Guide
+---
 # ANU PHYS2020 Thermodynamics Course Arduino Quick Start Guide
 
 Tony.Yan @anu.edu.au
@@ -18,6 +17,9 @@ March 2024
 ![MPU6050](https://img.shields.io/badge/MPU6050-accelerometer_and_gyroscope-red)
 
 ------
+* TOC
+{:toc}
+------ 
 
 * *This is a guide for setting up an Arduino for data logging.*
 * *You can download all the source code from [releases](https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start/releases)*
