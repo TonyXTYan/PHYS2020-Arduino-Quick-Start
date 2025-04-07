@@ -1,3 +1,8 @@
+---
+layout: default
+title: PHYS2020 Arduino Quick Start
+toc: true
+---
 # ANU PHYS2020 Thermodynamics Course Arduino Quick Start Guide
 
 Tony.Yan @anu.edu.au
