@@ -23,8 +23,8 @@ Tony.Yan @anu.edu.au
 * *The sample code performs basic data logging of various kit components. We encourage you to extend and customise it to your project-specific needs.*
 * *Make sure to double-check any pin connections before powering on, even though Arduino has some built-in protections, it's still possible to fry something...*
 * *Begin by completing the [Connecting to Arduino](#connecting-to-arduino), followed by the section about your specific sensors. Then you could proceed to [Recording Data to SD Card](#Recording-Data-to-SD-Card).*
-* *Note: the sensor sections from this guide are TLDR versions from [Last Minute Engineers](https://lastminuteengineers.com/electronics/arduino-projects/ ), with some pin changes to integrate the SD card module. You're of course welcome to explore more.*
-* *For reference: I’m using macOS 14.4, Apple Silicon, Arduino IDE 2.3.2, Arduino Nano and various electronics modules from Adrian.*
+* *Note: some sections from this guide are TLDR versions of various online guides, with some pin changes to integrate the SD card module. You're encouraged to develop your own codebase.*
+* *For reference: I’m using macOS 15.6.1, Apple Silicon, Arduino IDE 2.3.6, Arduino Nano and various electronics modules from Adrian.*
 
 
 ------
@@ -43,6 +43,7 @@ Tony.Yan @anu.edu.au
     - [DS18B20 usage notes](#ds18b20-usage-notes)
   - [MPU6050 Accelerometer and Gyroscope](#mpu6050-accelerometer-and-gyroscope)
     - [Notes](#notes)
+  - [ADXL345 Accelerometer](#adxl345-accelerometer)
   - [Pressure Sensor](#pressure-sensor)
   - [Recording Data to SD Card](#recording-data-to-sd-card)
     - [Verify your SD card and reader module works](#verify-your-sd-card-and-reader-module-works)
@@ -65,7 +66,7 @@ As illustrated in the figure below, I also strongly recommend mounting your Ardu
 As a side note, breadboards internally are connected like follows, 
 ![breadboard](screenshots/breadboard-internal-connections.jpg)
 So you can have 3.3V power rails on the top and another 5V rails on the bottom. 
-Note, these 5V and 3.3V are regulated by Arduino internal components, you can use them to power a few chips. But when powering lots of modules or a display, I suggest using the breadboard power supply (picture below and Adrian should have some on requests). If you decide to use one of these, make sure you set the jumper pins correctly, i.e. don't connect the 5V power supply to the 3.3V pin on Arduino, [you may fry it](https://forum.arduino.cc/t/accidentally-applied-5v-supply-to-3-3v-pin-something-smoked-what-was-it/259012). 
+Note, these 5V and 3.3V are regulated by Arduino internal components, you can use them to power a few chips. But when powering lots of modules or a display, I suggest using the breadboard power supply (picture below and Adrian should have some on requests). If you decide to use one of these, make sure you set the jumper pins correctly and test with a multimeter, i.e. don't connect the 5V power supply to the 3.3V pin on Arduino, [you may fry it](https://forum.arduino.cc/t/accidentally-applied-5v-supply-to-3-3v-pin-something-smoked-what-was-it/259012). 
 
 ![breadboard power supply](screenshots/breadboard-power-supply.jpg)
 
@@ -103,7 +104,7 @@ Then try upload again and it should upload without error.
 
 ### *Other Common Issues/Troubleshooting:*
 
-* Disconnect all the pins expect the USB cable.
+* Disconnect all the pins except the USB cable.
 * Press the reset button on the Arduino before uploading.
 * Try running the Arduino IDE in administrator/sudo mode.
 * Close other apps that might be using the COM port.
@@ -132,11 +133,26 @@ You might find the following Arduino Pin layout helpful (available [here](https:
 * You should probably test each of your sensors and make sure they meet the manufacturer's claims before quoting their measurements scientifically, e.g., knowing their precision, measurement range, systematic error, and response time. 
 * AI & LLM are fantastic at generating Arduino code and general Q&A, just make sure you understand every line it generates before uploading to Arduino, especially the physical pin connections match the code. Hint: [GitHub Copilot](https://docs.github.com/en/copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/getting-started-with-copilot-on-your-personal-account/getting-free-access-to-copilot-pro-as-a-student-teacher-or-maintainer) offers many most advanced AI models for free to education accounts.
 * I strongly recommend some kind of version control of your code and you can include the version histories as part of your final submission. I mostly use [Git](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F) hosted on [GitHub](https://docs.github.com/en/get-started/start-your-journey/about-github-and-git), there are also [GitLab](https://docs.gitlab.com/tutorials/) and [ANU self-hosted GitLab](https://gitlab.cecs.anu.edu.au) (though I will *not* recommend the last one, it consistently crashes around the end of each semester).
-* [Arduino Official Documentation](https://docs.arduino.cc) and [Arduino Offical Forum](https://forum.arduino.cc) are also good sources to look up for any issues.
+* [Arduino Official Documentation](https://docs.arduino.cc) and [Arduino Official Forum](https://forum.arduino.cc) are also good sources to look up for any issues.
 * https://lastminuteengineers.com/electronics/arduino-projects/ provides extensive and detailed guides on Arduino modules. I strongly recommend reading them to understand the module you are using, especially if you want to go beyond the sample codes. (I've also stolen some figures from their website for educational purposes.)
   
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## MAX6675 Temperature Sensor
+
+This is mainly used in the 2024 course, and you should be using MAX31855 instead. 
 
 For a more detailed guide on using the MAX6675 module, please read https://lastminuteengineers.com/max6675-thermocouple-arduino-tutorial/ 
 
@@ -169,7 +185,7 @@ I used the official library from Adafruit, but you're of course welcome to exper
 
 ![arduino library MAX6675](screenshots/MAX6675-library.png)
 
-Once the library is installed, open the provided sample code at `Menu -> File -> Examples -> MAX6675 library -> serialthermocouple`; there's also a copy of it named `MAX6675SerialLogger.ino` in this repository.
+Once the library is installed, open the provided sample code at `Menu -> File -> Examples -> MAX6675 library -> serialthermocouple`; there's also a copy of it named [`MAX6675SerialLogger.ino`](MAX6675SerialLogger/MAX6675SerialLogger.ino) in this repository.
 
 ![MAX6675 - sample](screenshots/MAX6675-sample.png)
 
@@ -183,27 +199,43 @@ Try uploading their sample script and opening the serial monitor (`Menu -> Tools
 
 
 ## MAX31855
-The MAX31855 is a newer version MAX6675, but they work basically the same (I haven't test & verify the this exact guide of MAX31855, if there is any issues please let me know). 
+The MAX31855 is a newer version MAX6675.
 ![MAX31855 pinout](screenshots/pinout_MAX31855.jpg)
-![MAX6675 pinout](screenshots/pinout_MAX6675.jpg)
 
 | MAX 31855 | MAX 6675 Equivalent | Arduino to MAX31855   | Sample code (`serialthermocouple`) variable |
 | --------- | -------- | ---------- | ----------------- |
 | Vin  (Power input)   | VCC      | 3.3V or 5V | -       |
 | V3o (only connect one of V3o or Vin)       | -        | 3.3V       | -      |
 | GND  (Ground)     | GND      | GND        | -       | 
-| CLK  (Serial Clock)            | SCK      | D5         | `MAXCLK` |
+| SO/DO    (Serial Data out)     | SO       | D3         | `MAXDO` |
 | CS    (Chip Select)            | CS       | D4         | `MAXCS` |
-| SO/DO    (Serial Data out)     | SO       | D3         | `MAXSO` |
+| CLK  (Serial Clock)            | SCK      | D5         | `MAXCLK` |
 
-You'll need to go to `Side bar -> Library Manager` (or `Cmd-Shift-I`, or `Menu -> Sketch -> Include Library -> Manage Libraries`), and search for `Max31855` and install the library by `Adafruit` (feel free to experiemnt libraries published by others). 
+
+![MAX31855 Breadboard](screenshots/MAX31855-breadboard.jpg)
+
+You'll need to go to `Side bar -> Library Manager` (or `Cmd-Shift-I`, or `Menu -> Sketch -> Include Library -> Manage Libraries`), and search for `Max31855` and install the library by `Adafruit` (feel free to experiment libraries published by others). 
 ![MAX31855 - library](screenshots/max31855-adafruit.png) 
-Once the library is installed, open the provided sample code at `Menu -> File -> Examples -> Adafruit MAX31855 -> serialthermocouple`; there's also a copy of it named `MAX31855SerialLogger.ino` in this repository.
+Once the library is installed, open the provided sample code at `Menu -> File -> Examples -> Adafruit MAX31855 -> serialthermocouple`; there's also a copy of it named [`MAX31855SerialLogger.ino`](MAX31855SerialLogger/MAX31855SerialLogger.ino) in this repository.
 ![MAX31855 - sample](screenshots/max31855-serialthermocouple.png)
 Try uploading their sample script and opening the serial monitor (`Menu -> Tools -> Serial Monitor` or `Shift-Cmd-M` or the top right Magnifying glass icon). You should see the thermocouple printing the temperatures onto the Serial Monitor. You could also show their timestamps by toggling the clock icon on the right. 
 
+
+![MAX31855 - running](screenshots/MAX31855-running.png)
+Notice in the above screenshot, I do not have any thermocouple connected to the MAX31855 and its outputting this error message. When there is a thermocouple, it should say something like `C = 25.00`.
+
+
+![MAX31855 Thermocouple](screenshots/MAX31855-thermocouple.png)
+A thermocouple works by generating a voltage difference that corresponds to the temperature difference between the measuring junction (wire soldered end) and a reference point (MAX31855 internal temperature sensor on the PCB). 
+
+Depending on the batch, the two thermocouple wires could be as thin as 0.1mm.
+To connect it, carefully separate the yellow and red wires and strip their insulation.
+Attach the red and yellow wires to the `-` and `+` terminals on the MAX31855 respectively.
+
+
 ### Tips & Tricks
-* If you want to use multiple MAX31855, you should let them share the same `DO` and `CLK` pins physically on the Arduino and give them the same `MAXDO` and `MAXCLK` variables in the code. Then, you can connect different `CS` pins to the Arduino, and assign them to different `MAXCS` in the code. This way, you can free up some pins and connect to other sensors or modules. Below is an example implementation of multiple MAX31855s. 
+* If you want to use multiple MAX31855, you should let them share the same `DO` (serial data out) and `CLK` (serial clock) pins physically on the Arduino and give them the same `MAXDO` and `MAXCLK` variables in the code.
+* Then, you can connect different `CS` (chip select) pins to the Arduino, and assign them to different `MAXCS` in the code. This way, you can free up some pins and connect to other sensors or modules. Below photo is an example of five MAX31855s simultaneously.
 ```c++
 #define MAXDO 2
 #define MAXCLK 3
@@ -214,6 +246,25 @@ Arduino_MAX31855 thermocouple2(MAXCLK, MAXCS2, MAXDO);
 ...
 ```
 ![Many MAX31855](screenshots/_DSC3032.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -239,17 +290,35 @@ I used the official library from `DallasTemperature`, but you're of course welco
 
 ![DS18B20 - library](screenshots/DS18B20-library.png)
 
-Once the library is installed, open the provided sample code at `Menu -> File -> Examples -> DallasTemperatures -> Single`; there's also a copy of it named `DS18B20Simple.ino` in this repository.
+Once the library is installed, open the provided sample code at `Menu -> File -> Examples -> DallasTemperatures -> Single`; there's also a copy of it named [`DS18B20Simple.ino`](DS18B20Simple/DS18B20Simple.ino) in this repository.
 
 ![DS18B20 - sample logging](screenshots/DS18B20-sample_logging.png)
 
 Try uploading their sample script and opening the serial monitor (`Menu -> Tools -> Serial Monitor` or `Shift-Cmd-M` or the top right Magnifying glass icon). You should see the thermometer printing the temperatures onto the Serial Monitor. You could also show their timestamps by toggling the clock icon on the right. 
 
 
+
 ### DS18B20 usage notes
 
-* Since this sensor only requires a single-pin connection to Arduino, it is straightforward to add multiple sensors; for more info, see `Menu -> File -> Examples -> DallasTemperatures -> TwoPin_DS18B29`. 
+* Since this sensor only requires a single-pin connection to Arduino, it is straightforward to add multiple sensors; for more info, see `Menu -> File -> Examples -> DallasTemperatures -> TwoPin_DS18B20`. 
 * The sensor wires could easily come loose on a breadboard; you should come up with a more permanent solution. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -272,7 +341,7 @@ You might need soldering skills to make the pins.
 
 ![IMG_2252](screenshots/IMG_2252.jpg)
 
-You also need to grab a code library to use the MPU6050 module, go to `Menu -> Sketch -> Include Library -> Manage Libraries ` (or `Shift-Cmd-I` or click on the Library icon in the left sidebar), and search up `MPU6050`.![breadboard - MPU6050](screenshots/breadboard - MPU6050.jpg)
+You also need to grab a code library to use the MPU6050 module, go to `Menu -> Sketch -> Include Library -> Manage Libraries ` (or `Shift-Cmd-I` or click on the Library icon in the left sidebar), and search up `MPU6050`.
 
 I used the official library of `Adafruit`, but you're of course welcome to experiment with other ones. 
 
@@ -292,6 +361,58 @@ You could also try the script in `Menu -> File -> Examples -> Adafruit MPU6050 -
 
 * MPU6050 has programming sensor range and higher range means lower sensitivity, this is set by `mpu.setAccelerometerRange(MPU6050_RANGE_8_G)` and `mpu.setGyroRange(MPU6050_RANGE_500_DEG)`. For example, if you choose maximum acceleration of $2g$, then you maximum sensitivity is $\frac{1}{16384}g \approx 0.6 \mathrm{mm/s^2}$, while max acc set to $16g$ would have sensitivity of $\frac{1}{2048}g\approx 4.8\mathrm{mm/s^2}$. More details about this is available on their datasheet https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf
 
+
+
+
+
+
+
+
+
+
+
+
+## ADXL345 Accelerometer
+
+![ADXL345 PCB](screenshots/ADXL345-PCB.png)
+
+
+| ADXL345                   | Arduino    |
+| ------------------------- | ---------- |
+| 5V                        | 5V         |
+| GND (Power Ground)        | GND        |
+| SCL (Serial Clock Line)   | A5         |
+| SDA (Serial Data Line)    | A4         |
+| Other pins not connected. |            |
+
+![ADXL345 Breadboard](screenshots/ADXL345-breadboard.jpg)
+
+First connect the ADXL345 to the Arduino as shown in the diagram and table above.
+
+
+
+
+Then, you need to grab the Adafruit library for the ADXL345, go to `Menu -> Sketch -> Include Library -> Manage Libraries ` (or `Shift-Cmd-I` or click on the Library icon in the left sidebar), and search for `ADXL345`. You're welcome to explore other libraries. 
+
+Once it's installed, you can try their provided sample code at `Menu -> File -> Examples -> Adafruit ADXL345 -> sensortest`. I've also included a slightly modified version in this repository here [`ADXL345.ino`](ADXL345/ADXL345.ino) with the correct Serial formatting so you can use it with the Serial Plotter (top right oscilloscope icon). Note you'll need to change the Serial baud rate to 115200 in the Arduino Serial Monitor.
+
+![ADXL345 Logging](screenshots/ADXL345-logging.png)
+
+
+### Notes
+- The ADXL345 is a 3-axis accelerometer, if you want rotation data you'll need to use [MPU6050](#mpu6050-accelerometer-and-gyroscope) which is a 3-axis accelerometer plus 3-axis gyroscope.
+- The ADXL345 is a 12-bit sensor with configurable range of $2g$, $4g$, $8g$, $16g$, the higher the range, lower the sensitivity. For example the sample code uses 16g range, which has sensitivity of $\frac{16*9.8}{2^{12}} \approx 0.04 \mathrm{m/s^2}$.
+
+
+
+
+
+
+
+
+
+
+
 ## Pressure Sensor
 
 Depending on your sensor type, usually, they only need ground and 5V, then the sensor output 0-5V depending on their spec. Then any Arduino's analog pin can read that 0-5V in 1024 steps using `analogRead(pinNo)`. 
@@ -301,6 +422,8 @@ Depending on your sensor type, usually, they only need ground and 5V, then the s
 * The pressure sensor in the template data logger (`SDCardDataLogger.ino`) is connected to analog pin A1. 
 
 ## Recording Data to SD Card
+
+
 
 For a more detailed guide on using the SD card module, please read https://lastminuteengineers.com/arduino-micro-sd-card-module-tutorial/
 
@@ -314,10 +437,10 @@ For the SD card module to work with the sample code (`SDCardDataLogger.ino`), co
 | ----------------------------------------- | ---------- |
 | VCC                                       | 3.3V or 5V |
 | GND                                       | GND        |
-| MISO (Serial Peripheral Interface Output) | 12         |
-| MOSI (Serial Peripheral Interface Input)  | 11         |
-| SCK (Serial Clock)                        | 13         |
-| CS (Chip Select)                          | 10         |
+| MISO (Serial Peripheral Interface Output) | D12        |
+| MOSI (Serial Peripheral Interface Input)  | D11        |
+| SCK (Serial Clock)                        | D13        |
+| CS (Chip Select)                          | D10        |
 
 
 
@@ -329,7 +452,22 @@ Open the built-in sample code at `Menu -> File -> Examples -> SD -> CardInfo` , 
 
 ![SD Card module v2](screenshots/SD_Card_module_v2.png)
 
+
+
 ### Using the sample code
+
+
+
+<details>
+<summary> 📦 Archived: 2024 SD Card Data Logger (MPU6050, MAX6675/MAX31855, DS18B20) </summary>
+
+⚠️ This section is archived on Aug 2025.
+
+For older version of this data logger, please refer to commit (history version)
+ - [2024 SD Card Data Logger (MPU6050, **MAX6675**, DS18B20)](https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start/tree/0d1b02dd78fd088330c309b894a8696c25b14163)
+ - [2025 SD Card Data Logger (MPU6050, **MAX31855 (untested)**, DS18B20)](https://github.com/TonyXTYan/PHYS2020-Arduino-Quick-Start/tree/a6111d73cbb265638f4196352cdcfecb3ff2d63f)
+
+
 
 Unless you installed all the sensors mentioned in the exact pins (in pic below), the sample code `SDCardDataLogger.ino` would most likely throw some errors and complain about missing sensors. 
 
@@ -436,6 +574,22 @@ You should **comment out (`Cmd-/`) any code about the sensors that you are *not*
     logToSerialAndSD("V1");
     logToSerialAndSD(analogRead(A1)*5.0/1024.0);
     ```
+
+</details>
+
+The sample code [`SDCardDataLogger.ino`](SDCardDataLogger/SDCardDataLogger.ino) is currently configured to log the accelerometer (ADXL345) and pressure sensor (analog pin A1) data. You can comment those sections out and uncomment the ones for other sensors.
+
+Even if you don't plan to use the SD card, this code might still be useful for data logging to the Serial Monitor. Since the data are comma-separated formatted, you could copy and paste the Serial Monitor output into a spreadsheet, or be more fancy and programmatically extract the data e.g. [using Python](https://projecthub.arduino.cc/ansh2919/serial-communication-between-python-and-arduino-663756).
+
+![SDCardDataLogger - ADXL345](screenshots/SDLogger_ADXL.jpg)
+
+To use the example code [SDCardDataLogger.ino](SDCardDataLogger/SDCardDataLogger.ino), as is, you can connect the ADXL345 as described in the [ADXL345 section](#adxl345-accelerometer) (SCL to A5, SDA to A4).
+
+Once you upload the code, you should see the data streamed to Serial and logged to the SD card.
+
+![SDCardLogger - MPU6050](screenshots/SDCardLogger.png)
+
+
 
 
 
